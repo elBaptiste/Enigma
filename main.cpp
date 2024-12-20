@@ -1,8 +1,10 @@
 #include <fstream>
 #include <iostream>
 #include <string>
+#include "Enigma.h"
 
 int main() {
+    /*
     std::cout << "Hello World!\n";
 
     std::ifstream fichier { "C:/Users/bapti/CLionProjects/Enigma/texte.txt" };
@@ -15,6 +17,7 @@ int main() {
     std::string ligne;
     while (std::getline(fichier, ligne)) {
         std::cout << ligne << std::endl;
+    */
     }
 
     return 0;

@@ -19,7 +19,7 @@ public :
      virtual std::string decod();
      std::string read();
      std::string write();
-//test
+
 };
 
 
