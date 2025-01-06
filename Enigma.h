@@ -19,6 +19,7 @@ std::string encod(std::string message, std::string clef1)override;
 std::string decod(std::string message, std::string clef1)override;
 
 
+
 };
 
 
