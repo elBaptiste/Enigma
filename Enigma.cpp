@@ -10,11 +10,11 @@
 
 std::string Enigma::generateKey() {
     std::srand(std::time(0));
-    std::string alphabet = "abcdefghijklmnopqrstuvwxyz";
+    std::string alphabet = "abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     int choix = -1;
     char temp = 'a';
-    for (int i = 0; i < 26; i++) {
-        choix=rand()%26;
+    for (int i = 0; i < 53; i++) {
+        choix=rand()%53;
         temp = alphabet[i];
         alphabet[i] = alphabet[choix];
         alphabet[choix] = temp;
@@ -23,9 +23,9 @@ std::string Enigma::generateKey() {
 }
 
 int Enigma::getPlaceAlphabet(char lettre) {
-    std::string alphabet = "abcdefghijklmnopqrstuvwxyz";
+    std::string alphabet ="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-    for (int i = 0; i < 26; i++) {
+    for (int i = 0; i < 53; i++) {
         if (lettre==alphabet[i]) {
             return i;
         }
@@ -34,25 +34,20 @@ int Enigma::getPlaceAlphabet(char lettre) {
 }
 
 std::string Enigma::encod(std::string message, std::string clef1){
-    std::string alphabet = "abcdefghijklmnopqrstuvwxyz";
     std::string nouveaumessage ="";
-    char charAAjouter = 'a';
     for (int i = 0; i < message.size() ; i++) {
-        if (message[i] != ' '){
-            nouveaumessage.push_back(clef1[Enigma::getPlaceAlphabet(message[i])]); // ligne pas belle pour dire qu on ajoute a la fin de nouveaumessage le caractere encodé
-        }
+        nouveaumessage.push_back(clef1[Enigma::getPlaceAlphabet(message[i])]); // ligne pas belle pour dire qu on ajoute a la fin de nouveaumessage le caractere encodé
     }
     return nouveaumessage;
 }
 
 std::string Enigma::decod(std::string message, std::string clef1){
-    std::string alphabet = "abcdefghijklmnopqrstuvwxyz";
+    std::string alphabet = "abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     std::string nouveaumessage ="";
-    char charAAjouter = 'a';
     int num_car_decode = 0;
     for (int i = 0; i < message.size() ; i++) {
-        for (int j = 0; j < 26; j++) {
-            if (message[i]==alphabet[j]) {
+        for (int j = 0; j < 53; j++) {
+            if (message[i]==clef1[j]) {
                 num_car_decode = j;
                 break;
             }

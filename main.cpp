@@ -30,7 +30,9 @@ int main() {
     std::string texte_a_ecrire = write(fichier);
 
     Enigma enigma = Enigma();
-    std::cout<< enigma.encod(texte_a_lire, clef);
-
+    std::string texteencr = enigma.encod(texte_a_lire, clef);
+    std::cout<<texteencr;
+    std::string textefinal = enigma.decod(texteencr,clef);
+    std::cout<<"\n\n\n"<<textefinal;
     return 0;
 }
