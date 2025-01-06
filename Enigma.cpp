@@ -9,51 +9,17 @@
 
 
 std::string Enigma::generateKey() {
+    std::srand(std::time(0));
     std::string alphabet = "abcdefghijklmnopqrstuvwxyz";
-    std::string clef;
-    bool done = false;
-    int choix = 0;
-    int deja_fait[26];
-    for (int i = 0; i < 26; i++) { //initialisation de dejafait
-        deja_fait[i]=-1;
-    }
-
+    int choix = -1;
+    char temp = 'a';
     for (int i = 0; i < 26; i++) {
-        while (not done) {
-            std::srand(std::time(0));
-            choix=rand()%26;
-            clef.push_back(alphabet[choix]);
-        }
+        choix=rand()%26;
+        temp = alphabet[i];
+        alphabet[i] = alphabet[choix];
+        alphabet[choix] = temp;
     }
-    return clef;
-
-    /*
-    int dejafait [26];
-    for (int i = 0; i < 26; i++) {
-        dejafait[i]=-1;
-    }
-    bool done = false;
-    int choix;
-    int pb;
-    for (int i = 0; i < 26; i++) {
-        while (not done) {
-            done = true;
-            std::srand(std::time(0));
-            choix=rand()%26;
-            pb = 0;
-            for (int j = 0; j < i; j++) {
-                if (choix==dejafait[j]) {
-                    pb = 1;
-                }
-            }
-            if (pb==0) {
-                done = true;
-                dejafait[i] = choix;
-            }
-        }
-        clef.push_back(alphabet[choix]);
-    }
-    return clef;*/
+    return alphabet;
 }
 
 int Enigma::getPlaceAlphabet(char lettre) {
