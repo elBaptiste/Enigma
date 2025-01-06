@@ -54,11 +54,27 @@ std::string Enigma::decod(std::string message, std::string clef1, std::string cl
     std::string alphabet = "abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     std::string nouveaumessage ="";
     int num_car_decode = 0;
+    int clefautiliser = -1;
     for (int i = 0; i < message.size() ; i++) {
+        clefautiliser=i%3;
         for (int j = 0; j < 53; j++) {
-            if (message[i]==clef1[j]) {
-                num_car_decode = j;
-                break;
+            if (clefautiliser==1) {
+                if (message[i]==clef1[j]) {
+                    num_car_decode = j;
+                    break;
+                }
+            }
+            if (clefautiliser==2) {
+                if (message[i]==clef2[j]) {
+                    num_car_decode = j;
+                    break;
+                }
+            }
+            if (clefautiliser==3) {
+                if (message[i]==clef3[j]) {
+                    num_car_decode = j;
+                    break;
+                }
             }
         }
         nouveaumessage.push_back(alphabet[num_car_decode]); // ligne pas belle pour dire qu on ajoute a la fin de nouveaumessage le caractere décodé
