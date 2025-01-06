@@ -38,8 +38,9 @@ std::string Enigma::encod(std::string message, std::string clef1){
     std::string nouveaumessage ="";
     char charAAjouter = 'a';
     for (int i = 0; i < message.size() ; i++) {
-        if
-        nouveaumessage.push_back(clef1[Enigma::getPlaceAlphabet(message[i])]); // ligne pas belle pour dire qu on ajoute a la fin de nouveaumessage le caractere encodé
+        if (message[i] != ' '){
+            nouveaumessage.push_back(clef1[Enigma::getPlaceAlphabet(message[i])]); // ligne pas belle pour dire qu on ajoute a la fin de nouveaumessage le caractere encodé
+        }
     }
     return nouveaumessage;
 }
