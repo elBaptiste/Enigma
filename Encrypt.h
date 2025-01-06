@@ -13,14 +13,11 @@ protected:
 
 
 public :
-     std::string plain();
-     std::string cipher();
-     virtual std::string encod();
-     virtual std::string decod();
-     std::string read();
-     std::string write();
-//test
+
 };
+
+std::string read(const std::string& fichier_lecture);
+std::string write(const std::string& fichier_ecriture);
 
 
 
