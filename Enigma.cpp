@@ -36,7 +36,16 @@ int Enigma::getPlaceAlphabet(char lettre) {
 std::string Enigma::encod(std::string message, std::string clef1, std::string clef2, std::string clef3) {
     std::string nouveaumessage ="";
     for (int i = 0; i < message.size() ; i++) {
-        nouveaumessage.push_back(clef1[getPlaceAlphabet(message[i])]); // ligne pas belle pour dire qu on ajoute a la fin de nouveaumessage le caractere encodé
+        int cle_utilise = i%3;
+        if (cle_utilise==1) {
+            nouveaumessage.push_back(clef1[getPlaceAlphabet(message[i])]); // ligne pas belle pour dire qu on ajoute a la fin de nouveaumessage le caractere encodé
+        }
+        else if (cle_utilise==2) {
+            nouveaumessage.push_back(clef2[getPlaceAlphabet(message[i])]); // ligne pas belle pour dire qu on ajoute a la fin de nouveaumessage le caractere encodé
+        }
+        else if (cle_utilise==3) {
+            nouveaumessage.push_back(clef3[getPlaceAlphabet(message[i])]); // ligne pas belle pour dire qu on ajoute a la fin de nouveaumessage le caractere encodé
+        }
     }
     return nouveaumessage;
 }
