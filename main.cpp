@@ -16,9 +16,9 @@ int main() {
 
     std::string ligne;
     while (std::getline(fichier, ligne)) {
-        std::cout << ligne << std::endl;
+        std::cout << ligne << std::endl;}
     */
-    }
+
 
     return 0;
 }
