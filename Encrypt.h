@@ -15,8 +15,8 @@ protected:
 public :
      std::string plain();
      std::string cipher();
-     virtual std::string encod();
-     virtual std::string decod();
+     virtual std::string encod(std::string message, std::string clef1);
+     virtual std::string decod(std::string message, std::string clef1);
      std::string read();
      std::string write();
 

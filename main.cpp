@@ -3,6 +3,8 @@
 #include <string>
 #include "Enigma.h"
 
+
+
 int main() {
     /*
     std::cout << "Hello World!\n";
@@ -19,6 +21,7 @@ int main() {
         std::cout << ligne << std::endl;}
     */
 
-
+    std::string clef = Enigma::generateKey();
+    std::cout << clef << std::endl;
     return 0;
 }

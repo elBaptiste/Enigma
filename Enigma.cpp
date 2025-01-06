@@ -4,12 +4,30 @@
 
 #include "Enigma.h"
 #include <random>
+#include <ctime>
 
 
 
-std::string generateKey() {
+std::string Enigma::generateKey() {
     std::string alphabet = "abcdefghijklmnopqrstuvwxyz";
     std::string clef;
+    bool done = false;
+    int choix = 0;
+    int deja_fait[26];
+    for (int i = 0; i < 26; i++) { //initialisation de dejafait
+        deja_fait[i]=-1;
+    }
+
+    for (int i = 0; i < 26; i++) {
+        while (not done) {
+            std::srand(std::time(0));
+            choix=rand()%26;
+            clef.push_back(alphabet[choix]);
+        }
+    }
+    return clef;
+
+    /*
     int dejafait [26];
     for (int i = 0; i < 26; i++) {
         dejafait[i]=-1;
@@ -19,6 +37,8 @@ std::string generateKey() {
     int pb;
     for (int i = 0; i < 26; i++) {
         while (not done) {
+            done = true;
+            std::srand(std::time(0));
             choix=rand()%26;
             pb = 0;
             for (int j = 0; j < i; j++) {
@@ -28,14 +48,15 @@ std::string generateKey() {
             }
             if (pb==0) {
                 done = true;
+                dejafait[i] = choix;
             }
         }
         clef.push_back(alphabet[choix]);
     }
-    return clef;
+    return clef;*/
 }
 
-int getPlaceAlphabet(char lettre) {
+int Enigma::getPlaceAlphabet(char lettre) {
     std::string alphabet = "abcdefghijklmnopqrstuvwxyz";
 
     for (int i = 0; i < 26; i++) {
@@ -46,17 +67,17 @@ int getPlaceAlphabet(char lettre) {
     return -1;
 }
 
-std::string encod(std::string message, std::string clef1){
+std::string Enigma::encod(std::string message, std::string clef1){
     std::string alphabet = "abcdefghijklmnopqrstuvwxyz";
     std::string nouveaumessage ="";
     char charAAjouter = 'a';
     for (int i = 0; i < message.size() ; i++) {
-        nouveaumessage.push_back(clef1[getPlaceAlphabet(message[i])]); // ligne pas belle pour dire qu on ajoute a la fin de nouveaumessage le caractere encodé
+        nouveaumessage.push_back(clef1[Enigma::getPlaceAlphabet(message[i])]); // ligne pas belle pour dire qu on ajoute a la fin de nouveaumessage le caractere encodé
     }
     return nouveaumessage;
 }
 
-std::string decod(std::string message, std::string clef1){
+std::string Enigma::decod(std::string message, std::string clef1){
     std::string alphabet = "abcdefghijklmnopqrstuvwxyz";
     std::string nouveaumessage ="";
     char charAAjouter = 'a';

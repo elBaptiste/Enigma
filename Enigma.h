@@ -13,8 +13,12 @@
 class Enigma : public Encrypt{
 private :
 public :
-std::string encod()override;
-std::string decod()override;
+static std::string generateKey();
+static int getPlaceAlphabet(char lettre);
+std::string encod(std::string message, std::string clef1)override;
+std::string decod(std::string message, std::string clef1)override;
+
+
 };
 
 
