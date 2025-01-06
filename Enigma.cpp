@@ -33,15 +33,15 @@ int Enigma::getPlaceAlphabet(char lettre) {
     return -1;
 }
 
-std::string Enigma::encod(std::string message, std::string clef1){
+std::string Enigma::encod(std::string message, std::string clef1, std::string clef2, std::string clef3) {
     std::string nouveaumessage ="";
     for (int i = 0; i < message.size() ; i++) {
-        nouveaumessage.push_back(clef1[Enigma::getPlaceAlphabet(message[i])]); // ligne pas belle pour dire qu on ajoute a la fin de nouveaumessage le caractere encodé
+        nouveaumessage.push_back(clef1[getPlaceAlphabet(message[i])]); // ligne pas belle pour dire qu on ajoute a la fin de nouveaumessage le caractere encodé
     }
     return nouveaumessage;
 }
 
-std::string Enigma::decod(std::string message, std::string clef1){
+std::string Enigma::decod(std::string message, std::string clef1, std::string clef2, std::string clef3){
     std::string alphabet = "abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     std::string nouveaumessage ="";
     int num_car_decode = 0;

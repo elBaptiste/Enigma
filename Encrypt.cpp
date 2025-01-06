@@ -3,7 +3,7 @@
 //
 
 #include "Encrypt.h"
-std::string Encrypt::encod(std::string message, std::string clef1) {
+std::string Encrypt::encod(std::string message, std::string clef1,  std::string clef2,  std::string clef3) {
     return "rien";
 };
 #include <fstream>
@@ -42,6 +42,6 @@ std::string write(const std::string& fichier_ecriture) {
 }
 
 
-std::string Encrypt::decod(std::string message, std::string clef1) {
+std::string Encrypt::decod(std::string message, std::string clef1, std::string clef2, std::string clef3) {
     return "rien";
 };
