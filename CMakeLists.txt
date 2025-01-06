@@ -8,5 +8,4 @@ add_executable(TP-C-3A main.cpp
         main.cpp
         Encrypt.cpp
         Encrypt.h
-        Enigma.h
-        Enigma.cpp)
+        Enigma.h)
