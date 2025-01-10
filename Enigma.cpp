@@ -4,22 +4,15 @@
 
 #include "Enigma.h"
 #include <random>
-#include <ctime>
+#include <algorithm>
 
 
-
-std::string Enigma::generateKey() {
-    std::srand(std::time(0));
+void Enigma::generateKey(std::string& key, int length) {
     std::string alphabet = "abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    int choix = -1;
-    char temp = 'a';
-    for (int i = 0; i < 53; i++) {
-        choix=rand()%53;
-        temp = alphabet[i];
-        alphabet[i] = alphabet[choix];
-        alphabet[choix] = temp;
-    }
-    return alphabet;
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::shuffle(alphabet.begin(), alphabet.end(), gen);
+    key = alphabet.substr(0, length);
 }
 
 int Enigma::getPlaceAlphabet(char lettre) {
