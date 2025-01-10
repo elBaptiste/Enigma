@@ -15,8 +15,8 @@ private :
 public :
 static void generateKey(std::string& key, int length);
 static int getPlaceAlphabet(char lettre);
-std::string encod(std::string message, std::string clef1, std::string clef2, std::string clef3)override;
-std::string decod(std::string message, std::string clef1, std::string clef2, std::string clef3)override;
+std::string encod(std::string message, std::string tab_clefs[3])override;
+std::string decod(std::string message, std::string tab_clefs[3])override;
 
 
 

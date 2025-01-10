@@ -26,51 +26,27 @@ int Enigma::getPlaceAlphabet(char lettre) {
     return -1;
 }
 
-std::string Enigma::encod(std::string message, std::string clef1, std::string clef2, std::string clef3) {
-    std::string nouveaumessage ="";
+std::string Enigma::encod(std::string message, std::string tab_clefs[3]) {
+    std::string message_code ="";
     for (int i = 0; i < message.size() ; i++) {
-        int cle_utilise = i%3;
-        if (cle_utilise==1) {
-            nouveaumessage.push_back(clef1[getPlaceAlphabet(message[i])]); // ligne pas belle pour dire qu on ajoute a la fin de nouveaumessage le caractere encodé
-        }
-        else if (cle_utilise==2) {
-            nouveaumessage.push_back(clef2[getPlaceAlphabet(message[i])]); // ligne pas belle pour dire qu on ajoute a la fin de nouveaumessage le caractere encodé
-        }
-        else if (cle_utilise==3) {
-            nouveaumessage.push_back(clef3[getPlaceAlphabet(message[i])]); // ligne pas belle pour dire qu on ajoute a la fin de nouveaumessage le caractere encodé
-        }
+            message_code.push_back(tab_clefs[i%3][getPlaceAlphabet(message[i])]); // ligne pas belle pour dire qu on ajoute a la fin de nouveaumessage le caractere encodé
     }
-    return nouveaumessage;
+    return message_code;
 }
 
-std::string Enigma::decod(std::string message, std::string clef1, std::string clef2, std::string clef3){
+std::string Enigma::decod(std::string message, std::string tab_clefs[3]){
     std::string alphabet = "abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    std::string nouveaumessage ="";
+    std::string message_decode ="";
     int num_car_decode = 0;
-    int clefautiliser = -1;
-    for (int i = 0; i < message.size() ; i++) {
-        clefautiliser=i%3;
+    for (int i = 0; i < message.size() ; i++){
         for (int j = 0; j < 53; j++) {
-            if (clefautiliser==1) {
-                if (message[i]==clef1[j]) {
+                if (message[i]==tab_clefs[i%3][j]) {
                     num_car_decode = j;
                     break;
-                }
-            }
-            if (clefautiliser==2) {
-                if (message[i]==clef2[j]) {
-                    num_car_decode = j;
-                    break;
-                }
-            }
-            if (clefautiliser==3) {
-                if (message[i]==clef3[j]) {
-                    num_car_decode = j;
-                    break;
-                }
+
             }
         }
-        nouveaumessage.push_back(alphabet[num_car_decode]); // ligne pas belle pour dire qu on ajoute a la fin de nouveaumessage le caractere décodé
+        message_decode.push_back(alphabet[num_car_decode]); // ligne pas belle pour dire qu on ajoute a la fin de nouveaumessage le caractere décodé
     }
-    return nouveaumessage;
+    return message_decode;
 }
