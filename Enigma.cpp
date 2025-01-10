@@ -7,12 +7,13 @@
 #include <algorithm>
 
 
-void Enigma::generateKey(std::string& key, int length) {
+std::string Enigma::generateKey(int length) {
     std::string alphabet = "abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     std::random_device rd;
     std::mt19937 gen(rd());
     std::shuffle(alphabet.begin(), alphabet.end(), gen);
-    key = alphabet.substr(0, length);
+    std::string key = alphabet.substr(0, length);
+    return key;
 }
 
 int Enigma::getPlaceAlphabet(char lettre) {
@@ -26,21 +27,23 @@ int Enigma::getPlaceAlphabet(char lettre) {
     return -1;
 }
 
-std::string Enigma::encod(std::string message, std::string tab_clefs[3]) {
+std::string Enigma::encod(std::string message, std::vector<std::string> tab_clefs) {
     std::string message_code ="";
+    int size = tab_clefs.size();
     for (int i = 0; i < message.size() ; i++) {
-            message_code.push_back(tab_clefs[i%3][getPlaceAlphabet(message[i])]); // ligne pas belle pour dire qu on ajoute a la fin de nouveaumessage le caractere encodé
+            message_code.push_back(tab_clefs[i%size][getPlaceAlphabet(message[i])]); // ligne pas belle pour dire qu on ajoute a la fin de nouveaumessage le caractere encodé
     }
     return message_code;
 }
 
-std::string Enigma::decod(std::string message, std::string tab_clefs[3]){
+std::string Enigma::decod(std::string message, std::vector<std::string> tab_clefs){
     std::string alphabet = "abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     std::string message_decode ="";
     int num_car_decode = 0;
-    for (int i = 0; i < message.size() ; i++){
+    int size = tab_clefs.size();
+    for (auto i = 0; i < message.size() ; i++){
         for (int j = 0; j < 53; j++) {
-                if (message[i]==tab_clefs[i%3][j]) {
+                if (message[i]==tab_clefs[i%size][j]) {
                     num_car_decode = j;
                     break;
 

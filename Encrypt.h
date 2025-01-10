@@ -4,7 +4,7 @@
 #include <iostream>
 #ifndef ENCRYPT_H
 #define ENCRYPT_H
-
+#include <vector>
 
 class Encrypt {
 protected:
@@ -15,8 +15,8 @@ protected:
 public :
      std::string plain();
      std::string cipher();
-     virtual std::string encod(std::string message, std::string tab_clefs[3]);
-     virtual std::string decod(std::string message, std::string tab_clefs[3]);
+     virtual std::string encod(std::string message, std::vector<std::string> tab_clefs);
+     virtual std::string decod(std::string message, std::vector<std::string> tab_clefs);
 
 };
 

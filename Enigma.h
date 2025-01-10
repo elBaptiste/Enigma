@@ -13,10 +13,10 @@
 class Enigma : public Encrypt{
 private :
 public :
-static void generateKey(std::string& key, int length);
+static std::string generateKey(int length);
 static int getPlaceAlphabet(char lettre);
-std::string encod(std::string message, std::string tab_clefs[3])override;
-std::string decod(std::string message, std::string tab_clefs[3])override;
+std::string encod(std::string message, std::vector<std::string> tab_clefs)override;
+std::string decod(std::string message, std::vector<std::string> tab_clefs)override;
 
 
 
